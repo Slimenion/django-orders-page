@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block mainActive %}
+nav-link
+{%  endblock %}
+
+{% block addOrdersActive %}
+nav-link
+{%  endblock %}
+
+{% block allOrdersActive %}
+nav-link
+{%  endblock %}
+
+{% block content %}
+    <h1>Изменить заказ</h1>
+    <div class="top-cover center-block">
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="customers_name" class="form-control" placeholder="Ваше ФИО" maxlength="255" required="" id="id_customers_name" value="{{ order.customers_name }}">
+            <input type="email" name="email" class="form-control mt-4" placeholder="Введите ваш email" maxlength="254" required="" id="id_email" value="{{ order.email }}">
+            <select name="product" class="form-select mt-4" aria-label="Default select example" required="" id="id_product">
+                {% for el in product %}
+                    {% if el.id == order.product.id %}
+                        <option value="{{ el.id }}" selected>{{ el.name_product }}</option>
+                    {% else %}
+                        <option value="{{ el.id }}">{{ el.name_product }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <select name="service" class="form-select mt-4" aria-label="Default select example" required="" id="id_service">
+                {% for el in service %}
+                    {% if el.id == order.service.id %}
+                        <option value="{{ el.id }}" selected>{{ el.name_service }}</option>
+                    {% else %}
+                        <option value="{{ el.id }}">{{ el.name_service }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="btn btn-success mt-4">Сохранить</button>
+            <span>{{ error }}</span>
+        </form>
+    </div>
+{%  endblock %}

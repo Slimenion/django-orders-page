@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block mainActive %}
+nav-link
+{%  endblock %}
+
+{% block addOrdersActive %}
+nav-link active
+{%  endblock %}
+
+{% block allOrdersActive %}
+nav-link
+{%  endblock %}
+
+{% block content %}
+    <h1>Сделать заказ</h1>
+    <div class="top-cover center-block">
+        <form method="post">
+            {% csrf_token %}
+            {{ forms.customers_name }}
+            {{ forms.email }}
+            {{ forms.product }}
+            {{ forms.service }}
+            <button type="submit" class="btn btn-success mt-4">Сделать заказ</button>
+            <span>{{ error }}</span>
+        </form>
+    </div>
+{%  endblock %}

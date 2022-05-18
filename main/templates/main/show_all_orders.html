@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block mainActive %}
+nav-link
+{%  endblock %}
+
+{% block addOrdersActive %}
+nav-link
+{%  endblock %}
+
+{% block allOrdersActive %}
+nav-link active
+{%  endblock %}
+
+{% block content %}
+    <h1>Все заказы</h1>
+    {% if orders %}
+        {% for el in orders %}
+            <div class="alert alert-warning mt-2">
+                <h3>{{ el.customers_name }}</h3>
+                <ul>
+                    <li>{{ el.email }}</li>
+                    <li>{{ el.product }}</li>
+                    <li>{{ el.service }}</li>
+                </ul>
+                <a href="edit-order/{{el.id}}" class="btn btn-warning">Изменить данный заказ</a>
+                <a href="delete-order/{{el.id}}" class="btn btn-danger">Удалить данный заказ</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>У нас нет заказов, можно отдыхать</p>
+    {% endif %}
+{%  endblock %}
